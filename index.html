@@ -21,6 +21,7 @@
       --card-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
 
+    /* Base layout */
     html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
     body {
       margin:0;
@@ -32,151 +33,61 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    /* Header */
     header{
       background: linear-gradient(180deg,var(--heli-deep),var(--heli-blue));
       color:#fff;
       text-align:center;
       padding:3rem 1rem 2rem;
     }
-
-    header h1{
-      margin:0;
-      font-size:2.1rem;
-      display:inline-flex;
-      gap:.6rem;
-      align-items:center;
-      animation: fadeInDown .9s ease-out both;
-    }
-
-    header p{
-      margin:.6rem 0 1rem;
-      opacity:.95;
-    }
+    header h1{ margin:0; font-size:2.1rem; display:inline-flex; gap:.6rem; align-items:center; }
+    header p{ margin:.6rem 0 1rem; opacity:.95; }
 
     .badge {
       background-color: var(--gold);
       color: var(--heli-blue);
       font-weight:700;
-      display:inline-block;
+      display:inline-flex;
+      gap:.6rem;
       padding:.5rem 1rem;
       border-radius:999px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      transform-origin:center;
       margin: 0.6rem auto 1.2rem;
       font-size:1rem;
-      display:flex;
-      gap:.6rem;
       align-items:center;
       justify-content:center;
       animation: pulse 2.2s infinite;
     }
 
-    nav ul{
-      list-style:none;
-      padding:0;
-      margin:1rem 0 0;
-      display:flex;
-      gap:1.2rem;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
-      transition: color .18s ease, transform .18s ease;
-      padding:.25rem .5rem;
-      border-radius:6px;
-    }
-
+    nav ul{ list-style:none; padding:0; margin:1rem 0 0; display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+    nav a{ color:#fff; text-decoration:none; font-weight:600; padding:.25rem .5rem; border-radius:6px; transition: color .18s, transform .18s; }
     nav a:hover{ color: var(--gold); transform: translateY(-2px); }
 
-    main{
-      max-width:1000px;
-      margin:2rem auto;
-      padding:0 1rem 4rem;
-    }
-
-    section{
-      margin:0 0 4.2rem;
-      background: transparent;
-      scroll-snap-align:start;
-      animation: fadeInUp .8s ease-out both;
-    }
-
-    h2{
-      color:var(--heli-deep);
-      font-size:1.5rem;
-      margin:0 0 .8rem;
-    }
-
+    main{ max-width:1000px; margin:2rem auto; padding:0 1rem 4rem; }
+    section{ margin:0 0 4.2rem; scroll-snap-align:start; }
+    h2{ color:var(--heli-deep); font-size:1.5rem; margin:0 0 .8rem; }
     p { margin:0 0 1rem; color:#222; }
 
-    .features ul{
-      padding-left:0;
-      list-style: none;
-      display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap:1rem;
-    }
-
-    .features li{
-      background:#fff;
-      padding:1rem;
-      border-radius:12px;
-      box-shadow: var(--card-shadow);
-      font-weight:600;
-      color:var(--heli-deep);
-    }
-
+    /* Features / Schools / Screenshots */
+    .features ul{ list-style:none; padding:0; display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .features li{ background:#fff; padding:1rem; border-radius:12px; box-shadow: var(--card-shadow); font-weight:600; color:var(--heli-deep); }
     .schools ul{ display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:12px; padding:0; list-style:none; }
-    .schools li{
-      background:linear-gradient(180deg,#fff, #fbfbff);
-      padding:.9rem;
-      border-radius:10px;
-      box-shadow: var(--card-shadow);
-      text-align:center;
-      color:var(--heli-deep);
-      font-weight:700;
-    }
+    .schools li{ background:linear-gradient(180deg,#fff, #fbfbff); padding:.9rem; border-radius:10px; box-shadow: var(--card-shadow); text-align:center; color:var(--heli-deep); font-weight:700; }
+    .screenshots img{ display:block; width:100%; max-width:840px; margin:1rem auto; border-radius:14px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
 
-    .screenshots img{
-      display:block;
-      width:100%;
-      max-width:840px;
-      margin: 1rem auto;
-      border-radius:14px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      transform-origin:center;
-    }
+    .contact-card{ background:#fff; padding:1rem; border-radius:12px; box-shadow: var(--card-shadow); }
 
-    .contact-card{
-      background:#fff;
-      padding:1rem;
-      border-radius:12px;
-      box-shadow: var(--card-shadow);
-    }
+    footer{ background:var(--heli-blue); color:#fff; padding:2rem 1rem; text-align:center; }
+    footer blockquote{ margin:1rem auto 0; color:var(--gold); font-style:italic; max-width:760px; }
 
-    footer{
-      background:var(--heli-blue);
-      color:#fff;
-      padding:2rem 1rem;
-      text-align:center;
-    }
-
-    footer blockquote{
-      margin:1rem auto 0;
-      color:var(--gold);
-      font-style:italic;
-      max-width:760px;
-    }
-
-    /* Chat button: moved to right and a bit higher */
+    /* ---- Sparkle launch button: FIXED and STABLE ----
+       Keep this element independent from AOS and page transforms.
+       Do NOT apply layout-changing properties elsewhere that reference it.
+    */
     .chat-launch {
       position: fixed;
-      right:20px;
-      bottom:90px;
+      right: 22px;      /* fixed offset from the right edge */
+      bottom: 92px;     /* fixed offset from the bottom edge (a bit higher now) */
       width:64px;
       height:64px;
       border-radius:50%;
@@ -187,25 +98,20 @@
       box-shadow: 0 10px 30px rgba(255,200,30,0.25), 0 6px 18px rgba(0,0,0,0.12);
       cursor:pointer;
       z-index:1200;
-      transition: transform .18s ease;
-      animation: pulse 2.2s infinite;
+      transition: transform .12s ease, box-shadow .12s ease;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      will-change: transform;  /* hint: animatable only, no layout shift */
     }
-
     .chat-launch:active { transform: scale(.96); }
-    .sparkle-icon{
-      font-size:1.6rem;
-      color: var(--heli-blue);
-      line-height:1;
-      font-weight:900;
-      user-select:none;
-      display:inline-block;
-    }
+    .chat-launch:focus { outline: 3px solid rgba(0,77,153,0.15); }
+    .sparkle-icon{ font-size:1.6rem; color: var(--heli-blue); font-weight:900; user-select:none; display:inline-block; line-height:1; }
 
-    /* Chatbox: hidden via opacity/transform (no layout jump) */
+    /* ---- Chatbox: show/hide by class, transitions only on opacity/transform ---- */
     .chatbox {
       position: fixed;
-      right:100px;
-      bottom:96px;
+      right: 100px;
+      bottom: 96px;
       width:320px;
       max-width:calc(100% - 140px);
       background:#fff;
@@ -215,19 +121,16 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.18);
       border: 2px solid var(--heli-blue);
 
-      /* hidden state */
+      /* hidden: no layout reflow */
       opacity: 0;
-      transform: translateY(10px) scale(.98);
+      transform: translateY(8px) scale(.99);
       visibility: hidden;
       pointer-events: none;
 
-      /* smooth transition */
-      transition: opacity 240ms cubic-bezier(.2,.9,.2,1), transform 240ms cubic-bezier(.2,.9,.2,1), visibility 240ms;
+      transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1), visibility 220ms;
       display:flex;
       flex-direction:column;
     }
-
-    /* visible state */
     .chatbox.open {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -235,102 +138,28 @@
       pointer-events: auto;
     }
 
-    .chat-header{
-      background:var(--heli-blue);
-      color:var(--gold);
-      padding:.6rem .9rem;
-      font-weight:800;
-      text-align:center;
-    }
+    .chat-header{ background:var(--heli-blue); color:var(--gold); padding:.6rem .9rem; font-weight:800; text-align:center; }
+    .chat-log{ padding:.7rem; max-height:220px; overflow:auto; font-size:.95rem; }
+    .chat-log .user-msg{ text-align:right; background: rgba(0,77,153,0.06); color:var(--heli-deep); display:inline-block; padding:.45rem .7rem; border-radius:12px; margin:.45rem 0; max-width:84%; float:right; clear:both; }
+    .chat-log .bot-msg{ text-align:left; background:#f3f7ff; color:#222; display:inline-block; padding:.45rem .7rem; border-radius:12px; margin:.45rem 0; max-width:84%; float:left; clear:both; }
 
-    .chat-log{
-      padding:.7rem;
-      max-height:220px;
-      overflow:auto;
-      font-size:.95rem;
-    }
+    .chat-input{ border-top:1px solid #eee; display:flex; gap:.5rem; padding:.5rem; background:#fafafa; align-items:center; }
+    .chat-input input{ flex:1; border:none; padding:.5rem .6rem; border-radius:8px; font-size:.95rem; background:#fff; outline:none; }
+    .chat-input button{ background:var(--heli-deep); color:var(--gold); border:none; padding:.6rem .7rem; border-radius:8px; cursor:pointer; font-weight:700; }
 
-    .chat-log .user-msg{
-      text-align:right;
-      background: rgba(0,77,153,0.06);
-      color:var(--heli-deep);
-      display:inline-block;
-      padding:.45rem .7rem;
-      border-radius:12px;
-      margin:.45rem 0;
-      max-width:84%;
-      float:right;
-      clear:both;
-    }
-
-    .chat-log .bot-msg{
-      text-align:left;
-      background:#f3f7ff;
-      color:#222;
-      display:inline-block;
-      padding:.45rem .7rem;
-      border-radius:12px;
-      margin:.45rem 0;
-      max-width:84%;
-      float:left;
-      clear:both;
-    }
-
-    .chat-input{
-      border-top:1px solid #eee;
-      display:flex;
-      gap:.5rem;
-      padding:.5rem;
-      background:#fafafa;
-      align-items:center;
-    }
-
-    .chat-input input{
-      flex:1;
-      border:none;
-      padding:.5rem .6rem;
-      border-radius:8px;
-      font-size:.95rem;
-      background:#fff;
-      outline:none;
-    }
-
-    .chat-input button{
-      background:var(--heli-deep);
-      color:var(--gold);
-      border:none;
-      padding:.6rem .7rem;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:700;
-    }
-
+    /* responsive */
     @media (max-width:640px){
-      .chat-launch { right:12px; bottom:80px; width:56px; height:56px; }
-      .chatbox { right:72px; bottom:86px; width:86vw; max-width:420px; }
+      .chat-launch { right:14px; bottom:84px; width:56px; height:56px; }
+      .chatbox { right:72px; bottom:88px; width:86vw; max-width:420px; }
       header h1 { font-size:1.6rem; }
       main { margin:1.2rem auto; padding:0 14px 3rem; }
     }
 
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(22px); }
-      to { opacity:1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity:0; transform: translateY(-18px); }
-      to { opacity:1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 8px 20px rgba(255,205,0,0.18); }
-      50% { transform: scale(1.06); box-shadow: 0 20px 40px rgba(255,205,0,0.28); }
-      100% { transform: scale(1); box-shadow: 0 8px 20px rgba(255,205,0,0.18); }
-    }
+    /* small animations */
+    @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 8px 20px rgba(255,205,0,0.18); } 50% { transform: scale(1.05); box-shadow: 0 20px 40px rgba(255,205,0,0.28); } 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(255,205,0,0.18); } }
   </style>
 </head>
 <body>
-
   <header>
     <h1 data-aos="fade-down"><i class="fa-solid fa-file-lines"></i> سامانه مدیریت کارنامه</h1>
     <p data-aos="fade-up">طراحی‌شده برای مدرسه حلی ۱ و قابل استفاده در سایر مدارس حلی</p>
@@ -396,12 +225,12 @@
     <blockquote>«العلم نور یقذفه الله فی قلب من یشاء» – علامه حلی</blockquote>
   </footer>
 
-  <!-- Sparkle chat button (right & up) -->
-  <div class="chat-launch" id="chat-launch" title="باز کردن دستیار حلی" onclick="toggleChatbox()" data-aos="zoom-in">
+  <!-- Sparkle launch button: NO data-aos here, so AOS won't touch it -->
+  <button id="chat-launch" class="chat-launch" aria-label="باز کردن دستیار حلی" title="باز کردن دستیار حلی">
     <span class="sparkle-icon">✦</span>
-  </div>
+  </button>
 
-  <!-- Chatbox (hidden by default; opens with .open class) -->
+  <!-- Chatbox: controlled with .open class -->
   <div class="chatbox" id="chatbox" aria-hidden="true">
     <div class="chat-header">🤖 دستیار سامانه حلی</div>
     <div class="chat-log" id="chat-log" role="log" aria-live="polite"></div>
@@ -412,7 +241,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
   <script>
     AOS.init({ duration: 750, easing: 'ease-out', once: true });
 
@@ -447,36 +275,31 @@
       return "متأسفم، جواب دقیق این سوال رو فعلاً ندارم. می‌تونید سوال رو با جزئیات بپرسید یا ایمیل بزنید.";
     }
 
-    // Toggle via class to avoid layout shifts
-    function toggleChatbox() {
-      const box = document.getElementById('chatbox');
-      box.classList.toggle('open');
-      const isOpen = box.classList.contains('open');
-      box.setAttribute('aria-hidden', !isOpen);
-      // Add initial greeting only once
+    // Stable toggle: only class toggles, no display changes
+    const launchBtn = document.getElementById('chat-launch');
+    const chatBox = document.getElementById('chatbox');
+
+    launchBtn.addEventListener('click', function(){
+      const opened = chatBox.classList.toggle('open');
+      chatBox.setAttribute('aria-hidden', String(!opened));
+      // add greeting once when opened
       const log = document.getElementById('chat-log');
-      if(isOpen && log.children.length === 0){
-        setTimeout(()=> addMessage("سلام! من دستیار سامانه حلی هستم. برای شروع می‌توانید بنویسید: امکانات یا مدارس یا تماس.", 'bot-msg'), 220);
-      }
-    }
-
-    // Outside click: close only when clicking outside both launch and chatbox
-    document.addEventListener('click', function(e){
-      const box = document.getElementById('chatbox');
-      const launch = document.getElementById('chat-launch');
-      if(!box || !launch) return;
-      if(!box.classList.contains('open')) return;
-
-      const clickedInsideBox = !!e.target.closest('#chatbox');
-      const clickedLaunch = !!e.target.closest('#chat-launch');
-
-      if(!clickedInsideBox && !clickedLaunch){
-        box.classList.remove('open');
-        box.setAttribute('aria-hidden', 'true');
+      if(opened && log.children.length === 0){
+        setTimeout(()=> addMessage("سلام! من دستیار سامانه حلی هستم. برای شروع بنویسید: امکانات یا مدارس یا تماس.", 'bot-msg'), 220);
       }
     });
 
-    // Send logic
+    // Close when clicking outside both launch and chatbox
+    document.addEventListener('click', function(e){
+      const target = e.target;
+      if(!chatBox.classList.contains('open')) return;
+      if(target.closest('#chatbox')) return;
+      if(target.closest('#chat-launch')) return;
+      chatBox.classList.remove('open');
+      chatBox.setAttribute('aria-hidden', 'true');
+    });
+
+    // send
     document.getElementById('chat-send').addEventListener('click', function(){
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
@@ -496,10 +319,8 @@
       }
     });
 
-    // Optional: prevent focus-caused jumps on mobile by not auto-focusing input.
-    // If you want the input focused without jump, you can call:
-    // requestAnimationFrame(() => { document.getElementById('chat-input').focus(); });
-    // after opening, but test on devices first.
+    // Prevent keyboard focus from causing layout jumps on mobile:
+    // Do not auto-focus input when opening. If you want focus, delay slightly and test devices.
   </script>
 </body>
 </html>
