@@ -1,62 +1,0 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>معرفی | سامانه مدیریت کارنامه</title>
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1><i class="fa-solid fa-file-lines"></i> سامانه مدیریت کارنامه</h1>
-      <p>طراحی‌شده برای مدرسه حلی — زیبا، سریع و آماده ارائه</p>
-
-      <div class="badge"><i class="fa-solid fa-shield-halved"></i><span>ویژه مدارس حلی و تیزهوشان</span></div>
-
-      <nav aria-label="منوی اصلی">
-        <ul>
-          <li><a href="intro.html"><i class="fa-solid fa-house"></i> خانه</a></li>
-          <li><a href="features.html"><i class="fa-solid fa-list-check"></i> امکانات</a></li>
-          <li><a href="schools.html"><i class="fa-solid fa-school"></i> مدارس</a></li>
-          <li><a href="screenshots.html"><i class="fa-solid fa-image"></i> تصاویر</a></li>
-          <li><a href="security.html"><i class="fa-solid fa-lock"></i> امنیت</a></li>
-          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> تماس</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <section class="card" aria-labelledby="intro-title">
-        <h2 id="intro-title">سلام، خوش آمدید</h2>
-        <p>این پلتفرم برای مدیریت کارنامه و گزارش‌های مدرسه‌ای طراحی شده است. سریع، قابل ارائه و سازگار با نیازهای مدارس حلی.</p>
-        <p>از نوار بالا برای رفتن به صفحات امکانات، مدارس، تصاویر، امنیت و تماس استفاده کنید.</p>
-      </section>
-    </main>
-
-    <footer>© ۱۴۰۴ سامانه مدیریت کارنامه | مدارس حلی</footer>
-  </div>
-
-  <!-- chat (shared minimal) -->
-  <button id="chat-launch" class="chat-launch" aria-label="باز کردن دستیار"><span class="sparkle-icon">✦</span></button>
-  <div id="chatbox" class="chatbox" aria-hidden="true">
-    <div class="chat-header">🤖 دستیار سامانه حلی</div>
-    <div id="chat-log" class="chat-log" role="log" aria-live="polite"></div>
-    <div class="chat-input">
-      <input id="chat-input" type="text" placeholder="سوال خود را بنویسید..." />
-      <button id="chat-send">ارسال</button>
-    </div>
-  </div>
-
-  <script>
-    const canned = {"سلام":"سلام! چطور کمک کنم؟","امکانات":"صفحه امکانات را ببینید.","مدارس":"مدرسه حلی ۱ دوره اول و دوره دوم پشتیبانی می‌شوند.","تماس":"ایمیل: school@example.com"};
-    function addMessage(t,cls){const l=document.getElementById('chat-log');const d=document.createElement('div');d.className=cls;d.innerText=t;l.appendChild(d);l.scrollTop=l.scrollHeight;}
-    document.getElementById('chat-send').addEventListener('click',()=>{const i=document.getElementById('chat-input');const t=i.value.trim(); if(!t) return; addMessage(t,'user-msg'); setTimeout(()=>addMessage(canned[t]||"متأسفم، فعلاً ندارم.",'bot-msg'),350); i.value='';});
-    document.getElementById('chat-input').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); document.getElementById('chat-send').click(); }});
-    const launch=document.getElementById('chat-launch'), box=document.getElementById('chatbox');
-    launch.addEventListener('click',()=>{ box.classList.toggle('open'); box.setAttribute('aria-hidden', String(!box.classList.contains('open'))); if(box.classList.contains('open') && document.getElementById('chat-log').children.length===0) setTimeout(()=>addMessage("سلام! من دستیار سامانه حلی هستم.",'bot-msg'),200); });
-    document.addEventListener('click',e=>{ if(!box.classList.contains('open')) return; if(e.target.closest('#chatbox')||e.target.closest('#chat-launch')) return; box.classList.remove('open'); box.setAttribute('aria-hidden','true'); });
-  </script>
-</body>
-</html>
