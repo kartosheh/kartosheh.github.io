@@ -78,3 +78,36 @@ footer {
   padding: 1rem;
   font-size: 0.9rem;
 }
+html {
+  scroll-snap-type: y proximity;
+}
+
+section {
+  scroll-snap-align: start;
+}
+
+.badge {
+  background-color: #ffd700;
+  color: #003366;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 1rem auto;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+footer blockquote {
+  font-style: italic;
+  margin-top: 1rem;
+  color: #ffd700;
+}
