@@ -18,29 +18,24 @@
       --heli-mid: #003a66;
       --heli-deep: #002b55;
       --gold: #ffd24d;
-      --glass: rgba(255,255,255,0.10);
       --bg-1: linear-gradient(180deg,#f8fbff 0%, #eef6ff 40%, #f6fbff 100%);
       --card-shadow: 0 12px 40px rgba(2,17,34,0.08);
-      --glass-border: rgba(255,255,255,0.18);
       --muted: #556677;
     }
 
-    /* Base */
-    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
     * { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
     body {
       margin:0;
       font-family: 'Vazirmatn', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background: var(--bg-1);
       color: #071226;
       line-height:1.65;
-      -webkit-font-smoothing:antialiased;
     }
 
-    /* Container */
     .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
 
-    /* Header: glossy hero */
+    /* Header: centered content (badge will be centered) */
     header {
       margin: 18px auto 26px;
       border-radius: 18px;
@@ -51,9 +46,15 @@
       position: relative;
       overflow: hidden;
       backdrop-filter: blur(6px) saturate(1.05);
+
+      /* ensure all header children are centered vertically and horizontally */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    /* subtle decorative glow */
     header::before{
       content:"";
       position:absolute;
@@ -85,29 +86,25 @@
       opacity:0.95;
     }
 
-    /* Badge (glass) */
+    /* Centered badge styling */
     .badge {
       display:inline-flex;
       gap:.6rem;
       align-items:center;
       justify-content:center;
-      margin:14px auto 0;
+      margin:14px auto 0;           /* auto left/right centers it */
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
       color: var(--heli-deep);
       padding:10px 18px;
       border-radius:999px;
       font-weight:800;
       box-shadow: 0 10px 28px rgba(1,36,63,0.14);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(255,255,255,0.22);
       width: fit-content;
       transform: translateZ(0);
     }
 
-    nav {
-      margin-top: 16px;
-      text-align:center;
-    }
-
+    nav { margin-top: 16px; }
     nav ul { display:inline-flex; gap:14px; padding:0; margin: 10px 0 0; list-style:none; flex-wrap:wrap; justify-content:center; }
     nav a{
       color:rgba(255,255,255,0.95);
@@ -115,14 +112,12 @@
       padding:8px 12px;
       border-radius:8px;
       font-weight:600;
-      transition: all .18s ease;
       display:inline-flex; gap:8px; align-items:center;
+      transition: all .18s ease;
     }
     nav a:hover{ transform:translateY(-4px); color:var(--gold); text-shadow: 0 4px 18px rgba(0,0,0,0.18); }
 
-    /* Main glass cards */
     main { margin-top: 26px; }
-
     section.card {
       background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.70));
       border-radius:14px;
@@ -131,73 +126,30 @@
       box-shadow: var(--card-shadow);
       border: 1px solid rgba(255,255,255,0.6);
     }
-
     section h2 { margin:0 0 10px; color:var(--heli-deep); font-size:1.25rem; font-weight:800; }
     section p { margin:0 0 8px; color:var(--muted); }
 
-    /* Features grid */
     .features-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin-top:8px; }
-    .feature {
-      background: linear-gradient(180deg,#fff, #fbfdff);
-      padding:12px;
-      border-radius:12px;
-      box-shadow: 0 10px 30px rgba(2,17,34,0.06);
-      border:1px solid rgba(2,17,34,0.03);
-      display:flex; gap:10px; align-items:center;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
+    .feature { background: linear-gradient(180deg,#fff, #fbfdff); padding:12px; border-radius:12px; box-shadow: 0 10px 30px rgba(2,17,34,0.06); display:flex; gap:10px; align-items:center; transition: transform .18s ease, box-shadow .18s ease; position:relative; }
     .feature i{ color:var(--heli-mid); font-size:1.05rem; min-width:28px; text-align:center; }
-    .feature:hover{ transform: translateY(-6px); box-shadow: 0 18px 48px rgba(2,17,34,0.12); }
 
-    /* Schools list */
     .schools-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); margin-top:8px; }
-    .school {
-      background: linear-gradient(180deg,#fff,#f7fbff);
-      padding:12px;
-      border-radius:12px;
-      text-align:center;
-      box-shadow: 0 10px 28px rgba(2,17,34,0.05);
-      font-weight:700;
-      color:var(--heli-deep);
-    }
+    .school { background: linear-gradient(180deg,#fff,#f7fbff); padding:12px; border-radius:12px; text-align:center; box-shadow: 0 10px 28px rgba(2,17,34,0.05); font-weight:700; color:var(--heli-deep); position:relative; transition: transform .18s ease, box-shadow .18s ease; }
 
-    /* Screenshots glossy */
     .screenshots { display:flex; flex-direction:column; gap:14px; align-items:center; margin-top:8px; }
-    .screenshot {
-      width:100%;
-      max-width:920px;
-      border-radius:14px;
-      overflow:hidden;
-      position:relative;
-      transition: transform .35s cubic-bezier(.2,.9,.2,1), filter .35s ease;
-      box-shadow: 0 26px 60px rgba(2,17,34,0.12);
-      border: 1px solid rgba(10,30,50,0.04);
-      background:linear-gradient(180deg, #fff, #f8fbff);
-    }
+    .screenshot { width:100%; max-width:920px; border-radius:14px; overflow:hidden; position:relative; transition: transform .35s cubic-bezier(.2,.9,.2,1), filter .35s ease; box-shadow: 0 26px 60px rgba(2,17,34,0.12); border: 1px solid rgba(10,30,50,0.04); background:linear-gradient(180deg, #fff, #f8fbff); }
     .screenshot img{ width:100%; height:auto; display:block; transform-origin:center; }
-    .screenshot:hover{ transform: translateY(-8px) scale(1.01); filter: saturate(1.05) contrast(1.02); }
 
-    /* Contact card */
-    .contact-row { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
-    .contact-card { flex:1; min-width:220px; }
+    .contact-card{ background:#fff; padding:12px; border-radius:10px; box-shadow: 0 10px 30px rgba(2,17,34,0.06); }
 
-    /* Footer glossy */
-    footer {
-      margin-top:30px;
-      border-radius:12px;
-      padding:22px;
-      background: linear-gradient(180deg, rgba(0,36,63,0.95), rgba(0,26,42,0.95));
-      color:#fff;
-      box-shadow: 0 18px 50px rgba(2,17,34,0.16);
-      text-align:center;
-    }
+    footer { margin-top:30px; border-radius:12px; padding:22px; background: linear-gradient(180deg, rgba(0,36,63,0.95), rgba(0,26,42,0.95)); color:#fff; box-shadow: 0 18px 50px rgba(2,17,34,0.16); text-align:center; }
     footer blockquote { margin:12px auto 0; color:var(--gold); font-style:italic; max-width:820px; }
 
-    /* Sparkle chat button: stable fixed + small glossy ring */
+    /* Sparkle chat button (stable) */
     .chat-launch {
       position: fixed;
       right: 22px;
-      bottom: 110px;          /* a bit higher for better glance */
+      bottom: 110px;
       width:66px;
       height:66px;
       border-radius:50%;
@@ -209,33 +161,11 @@
       cursor:pointer;
       z-index:1400;
       transition: transform .14s ease, box-shadow .14s ease;
-      will-change: transform;
       border: 2px solid rgba(255,255,255,0.22);
     }
-    .chat-launch:active { transform: scale(.96); }
     .sparkle-icon { font-size:1.6rem; color:var(--heli-deep); font-weight:900; }
 
-    /* Chatbox: show/hide with opacity/transform, no layout jump */
-    .chatbox {
-      position: fixed;
-      right: 104px;
-      bottom: 116px;
-      width:340px;
-      max-width: calc(100% - 120px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,255,0.98));
-      border-radius:14px;
-      overflow:hidden;
-      z-index:1399;
-      box-shadow: 0 26px 70px rgba(2,17,34,0.18);
-      border: 1px solid rgba(2,17,34,0.06);
-      opacity:0;
-      transform: translateY(10px) scale(.995);
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1), visibility 220ms;
-      display:flex;
-      flex-direction:column;
-    }
+    .chatbox { position: fixed; right: 104px; bottom: 116px; width:340px; max-width: calc(100% - 120px); background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,255,0.98)); border-radius:14px; overflow:hidden; z-index:1399; box-shadow: 0 26px 70px rgba(2,17,34,0.18); border: 1px solid rgba(2,17,34,0.06); opacity:0; transform: translateY(10px) scale(.995); visibility: hidden; pointer-events: none; transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1), visibility 220ms; display:flex; flex-direction:column; }
     .chatbox.open { opacity:1; transform: translateY(0) scale(1); visibility: visible; pointer-events:auto; }
 
     .chat-header { background: linear-gradient(90deg,var(--heli-mid),var(--heli-deep)); color:var(--gold); padding:10px 12px; font-weight:800; text-align:center; }
@@ -247,13 +177,36 @@
     .chat-input input { flex:1; border:none; padding:10px 12px; border-radius:10px; background:#fff; box-shadow: inset 0 1px 0 rgba(0,0,0,0.02); outline:none; font-size:0.95rem; }
     .chat-input button { background: linear-gradient(90deg,var(--heli-mid),var(--heli-deep)); color:var(--gold); border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:800; }
 
-    /* small screens tweaks */
     @media (max-width:720px){
       .wrap { padding:18px 14px 80px; }
       .chat-launch { right: 16px; bottom:98px; width:58px; height:58px; }
       .chatbox { right: 82px; bottom:102px; width:86vw; }
       header { padding:18px; border-radius:12px; }
       header h1 { font-size:1.4rem; }
+    }
+
+    /* Hover zoom + gloss for features and schools (from your request) */
+    .feature, .school {
+      transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, filter 260ms ease;
+      will-change: transform, box-shadow, filter;
+    }
+    .feature:hover, .school:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 22px 48px rgba(1, 36, 63, 0.14);
+      filter: saturate(1.06) contrast(1.02);
+      z-index: 5;
+    }
+    .feature::after, .school::after {
+      content:"";
+      position:absolute; inset:0; border-radius:inherit;
+      pointer-events:none; opacity:0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
+      transition: opacity 260ms ease;
+      mix-blend-mode: screen;
+    }
+    .feature:hover::after, .school:hover::after { opacity:1; }
+    @media (prefers-reduced-motion: reduce) {
+      .feature, .school { transition:none !important; transform:none !important; box-shadow:none !important; }
     }
   </style>
 </head>
@@ -263,9 +216,10 @@
       <h1><i class="fa-solid fa-file-lines"></i> سامانه مدیریت کارنامه</h1>
       <p>طراحی‌شده برای مدرسه حلی ۱ — زیبا، سریع و آماده ارائه</p>
 
-      <div class="badge" data-aos="zoom-in">
+      <!-- Centered badge (now guaranteed centered by header flex + margin:auto) -->
+      <div class="badge" id="main-badge" aria-hidden="false">
         <i class="fa-solid fa-shield-halved"></i>
-        <span>ویژه مدارس استعدادهای درخشان حلی</span>
+        <span>ویژه مدارس استفاده‌کننده از خدمات حلی</span>
       </div>
 
       <nav aria-label="منوی اصلی">
@@ -274,6 +228,7 @@
           <li><a href="#features"><i class="fa-solid fa-list-check"></i> امکانات</a></li>
           <li><a href="#schools"><i class="fa-solid fa-school"></i> مدارس حلی</a></li>
           <li><a href="#screenshots"><i class="fa-solid fa-image"></i> تصاویر</a></li>
+          <li><a href="#contact"><i class="fa-solid fa-lock"></i> حریم</a></li>
           <li><a href="#contact"><i class="fa-solid fa-envelope"></i> تماس</a></li>
         </ul>
       </nav>
@@ -288,52 +243,44 @@
       <section id="features" class="card" data-aos="fade-up">
         <h2>چرا این سامانه؟</h2>
         <div class="features-grid">
-          <div class="feature" data-aos="fade-right"><i class="fa-solid fa-language"></i> پشتیبانی کامل فارسی و راست‌چین</div>
-          <div class="feature" data-aos="fade-left"><i class="fa-solid fa-cog"></i> قابل تنظیم برای الگوهای مدرسه‌ای</div>
-          <div class="feature" data-aos="fade-right"><i class="fa-solid fa-rocket"></i> سریع، کم‌حجم و آماده ارائه</div>
+          <div class="feature" data-aos="fade-right"><i class="fa-solid fa-language"></i> پشتیبانی کامل از زبان‌های گوناگون و لهجه‌های مختلف</div>
+          <div class="feature" data-aos="fade-left"><i class="fa-solid fa-cog"></i> قابلیت تنظیم برای الگوهای گوناگون مدرسه‌ها</div>
+          <div class="feature" data-aos="fade-right"><i class="fa-solid fa-rocket"></i> خدمات ساده، سریع و قابل ارائه در جلسات رسمی</div>
         </div>
       </section>
 
       <section id="schools" class="card" data-aos="fade-up">
         <h2>مدارس حلی پشتیبانی‌شده</h2>
         <div class="schools-grid">
-          <div class="school" data-aos="fade-left">مدرسه حلی ۱ تهران</div>
-          <div class="school" data-aos="fade-right">مدرسه حلی ۲ تهران</div>
-          <div class="school" data-aos="fade-left">مدرسه حلی مشهد</div>
-          <div class="school" data-aos="fade-right">مدرسه حلی شیراز</div>
+          <div class="school" data-aos="fade-left">مدرسه حلی تهران</div>
+          <div class="school" data-aos="fade-right">مدرسه حلی مشهد</div>
+          <div class="school" data-aos="fade-left">مدرسه حلی شیراز</div>
+          <div class="school" data-aos="fade-right">مدرسه حلی اصفهان</div>
+          <div class="school" data-aos="fade-left">مدرسه حلی تبریز</div>
         </div>
       </section>
 
       <section id="screenshots" class="card" data-aos="fade-up">
         <h2>تصاویر سامانه واقعی</h2>
         <div class="screenshots">
-          <figure class="screenshot" data-aos="fade-left">
-            <img src="sc.jpeg" alt="نمونه داشبورد" />
-          </figure>
-          <figure class="screenshot" data-aos="fade-right">
-            <img src="student.jpeg" alt="لیست دانش‌آموزان" />
-          </figure>
+          <figure class="screenshot" data-aos="fade-left"><img src="sc.jpeg" alt="نمونه داشبورد" /></figure>
+          <figure class="screenshot" data-aos="fade-right"><img src="student.jpeg" alt="لیست دانش‌آموزان" /></figure>
         </div>
       </section>
 
       <section id="contact" class="card" data-aos="fade-up">
         <h2>تماس با ما</h2>
         <div class="contact-row">
-          <div class="contact-card">
-            <p>برای اطلاعات بیشتر یا درخواست دمو با ایمیل زیر در تماس باشید:</p>
-            <p><strong>school@example.com</strong></p>
-          </div>
+          <div class="contact-card"><p>برای اطلاعات بیشتر یا درخواست دمو با ایمیل زیر در تماس باشید:</p><p><strong>school@example.com</strong></p></div>
           <div style="min-width:160px; text-align:center; align-self:center;">
-            <button style="background:linear-gradient(90deg,var(--heli-mid),var(--heli-deep)); color:var(--gold); border:none; padding:10px 14px; border-radius:10px; font-weight:800; box-shadow: 0 10px 30px rgba(0,50,100,0.12); cursor:pointer;">
-              درخواست دمو
-            </button>
+            <button style="background:linear-gradient(90deg,var(--heli-mid),var(--heli-deep)); color:var(--gold); border:none; padding:10px 14px; border-radius:10px; font-weight:800; box-shadow: 0 10px 30px rgba(0,50,100,0.12); cursor:pointer;">درخواست دمو</button>
           </div>
         </div>
       </section>
     </main>
 
     <footer data-aos="fade-up">
-      <p>© ۱۴۰۴ سامانه کارنامه | مدرسه حلی ۱</p>
+      <p>© ۱۴۰۴ سامانه کارنامه | مدارس حلی</p>
       <blockquote>«العلم نور یقذفه الله فی قلب من یشاء» – علامه حلی</blockquote>
     </footer>
   </div>
@@ -362,7 +309,7 @@
     const cannedResponses = {
       "سلام": "سلام! خوش اومدید. چطور می‌تونم کمک‌تون کنم؟",
       "امکانات": "سامانه شامل مدیریت نمرات، لیست دانش‌آموزان، گزارش‌گیری، و تنظیمات مدرسه است.",
-      "مدارس": "در حال حاضر حلی ۱، حلی ۲، مشهد و شیراز در لیست پشتیبانی هستند.",
+      "مدارس": "در حال حاضر حلی ۱، حلی ۲، مشهد، شیراز، اصفهان و تبریز در لیست پشتیبانی هستند.",
       "تماس": "برای تماس، لطفاً ایمیل school@example.com را استفاده کنید.",
       "کارنامه": "می‌تونید کارنامه رو مشاهده، ذخیره و چاپ کنید و گزارش‌های تجمعی هم داریم.",
       "دمو": "برای دمو لطفاً یک ایمیل بفرستید یا اینجا متن پیام‌تون رو بفرستید تا راهنمایی کنم."
