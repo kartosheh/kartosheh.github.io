@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
   <header>
-    <h1><i class="fa-solid fa-file-lines"></i> سامانه مدیریت کارنامه</h1>
-    <p>طراحی‌شده برای مدرسه حلی ۱ و قابل استفاده در سایر مدارس حلی</p>
+    <h1 data-aos="fade-down"><i class="fa-solid fa-file-lines"></i> سامانه مدیریت کارنامه</h1>
+    <p data-aos="fade-up">طراحی‌شده برای مدرسه حلی ۱ و قابل استفاده در سایر مدارس حلی</p>
     <nav>
       <ul>
         <li><a href="#intro"><i class="fa-solid fa-star"></i> معرفی</a></li>
@@ -23,27 +24,27 @@
   </header>
 
   <main>
-    <section id="intro">
+    <section id="intro" data-aos="fade-up">
       <h2>معرفی سامانه</h2>
       <p>سامانه کارنامه یک پلتفرم مدرن برای مدیریت نمرات، لیست دانش‌آموزان، و گزارش‌گیری است. این سامانه با توجه به نیازهای مدارس حلی طراحی شده و قابل توسعه برای سایر مدارس نیز می‌باشد.</p>
     </section>
 
-    <section id="features">
+    <section id="features" data-aos="fade-up">
       <h2>چرا این سامانه؟</h2>
       <ul>
-        <li>پشتیبانی کامل از زبان فارسی و راست‌چین</li>
-        <li>قابل تنظیم برای الگوهای مدرسه‌ای مختلف</li>
-        <li>طراحی ساده، سریع و قابل ارائه در جلسات رسمی</li>
+        <li data-aos="fade-right">پشتیبانی کامل از زبان فارسی و راست‌چین</li>
+        <li data-aos="fade-left">قابل تنظیم برای الگوهای مدرسه‌ای مختلف</li>
+        <li data-aos="fade-right">طراحی ساده، سریع و قابل ارائه در جلسات رسمی</li>
       </ul>
     </section>
 
-    <section id="screenshots">
+    <section id="screenshots" data-aos="fade-up">
       <h2>تصاویر سامانه واقعی</h2>
-      <img src="assets/images/screenshot1.png" alt="نمونه داشبورد">
-      <img src="assets/images/screenshot2.png" alt="لیست دانش‌آموزان">
+      <img src="assets/images/screenshot1.png" alt="نمونه داشبورد" data-aos="fade-left">
+      <img src="assets/images/screenshot2.png" alt="لیست دانش‌آموزان" data-aos="fade-right">
     </section>
 
-    <section id="contact">
+    <section id="contact" data-aos="fade-up">
       <h2>تماس با ما</h2>
       <p>برای اطلاعات بیشتر با ایمیل <strong>school@example.com</strong> در تماس باشید.</p>
     </section>
@@ -52,5 +53,14 @@
   <footer>
     <p>© ۱۴۰۴ سامانه کارنامه | مدرسه حلی ۱</p>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out',
+      once: true
+    });
+  </script>
 </body>
 </html>
