@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
   <style>
-    /* ----- Basic layout & theme ----- */
     :root{
       --heli-blue: #003366;
       --heli-deep: #004d99;
@@ -33,7 +32,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ----- Header ----- */
     header{
       background: linear-gradient(180deg,var(--heli-deep),var(--heli-blue));
       color:#fff;
@@ -55,7 +53,6 @@
       opacity:.95;
     }
 
-    /* badge under header */
     .badge {
       background-color: var(--gold);
       color: var(--heli-blue);
@@ -116,7 +113,6 @@
 
     p { margin:0 0 1rem; color:#222; }
 
-    /* feature list */
     .features ul{
       padding-left:0;
       list-style: none;
@@ -134,7 +130,6 @@
       color:var(--heli-deep);
     }
 
-    /* schools */
     .schools ul{ display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:12px; padding:0; list-style:none; }
     .schools li{
       background:linear-gradient(180deg,#fff, #fbfbff);
@@ -146,7 +141,6 @@
       font-weight:700;
     }
 
-    /* screenshots */
     .screenshots img{
       display:block;
       width:100%;
@@ -157,7 +151,6 @@
       transform-origin:center;
     }
 
-    /* contact card */
     .contact-card{
       background:#fff;
       padding:1rem;
@@ -165,7 +158,6 @@
       box-shadow: var(--card-shadow);
     }
 
-    /* footer */
     footer{
       background:var(--heli-blue);
       color:#fff;
@@ -180,11 +172,11 @@
       max-width:760px;
     }
 
-    /* ----- Floating sparkle launch button ----- */
+    /* Chat button moved to right and a bit higher */
     .chat-launch {
       position: fixed;
-      left:20px;
-      bottom:20px;
+      right:20px;        /* moved to the right */
+      bottom:90px;       /* lifted up from bottom */
       width:64px;
       height:64px;
       border-radius:50%;
@@ -209,11 +201,11 @@
       display:inline-block;
     }
 
-    /* ----- Chatbox ----- */
+    /* Chatbox adjusted to appear from the right */
     .chatbox {
       position: fixed;
-      left:100px;
-      bottom:26px;
+      right:100px;       /* aligned to the right side */
+      bottom:96px;       /* slightly above the launch button baseline */
       width:320px;
       max-width:calc(100% - 140px);
       background:#fff;
@@ -296,15 +288,13 @@
       font-weight:700;
     }
 
-    /* small screens */
     @media (max-width:640px){
-      .chat-launch { left:12px; bottom:12px; width:56px; height:56px; }
-      .chatbox { left:84px; bottom:14px; width:86vw; max-width:420px; }
+      .chat-launch { right:12px; bottom:80px; width:56px; height:56px; }
+      .chatbox { right:72px; bottom:86px; width:86vw; max-width:420px; }
       header h1 { font-size:1.6rem; }
       main { margin:1.2rem auto; padding:0 14px 3rem; }
     }
 
-    /* ----- Animations ----- */
     @keyframes fadeInUp {
       from { opacity:0; transform: translateY(22px); }
       to { opacity:1; transform: translateY(0); }
@@ -371,8 +361,6 @@
 
     <section id="screenshots" class="screenshots" data-aos="fade-up">
       <h2>تصاویر سامانه واقعی</h2>
-
-      <!-- images in repo root: sc.jpeg and student.jpeg -->
       <img src="sc.jpeg" alt="نمونه داشبورد" data-aos="fade-left" />
       <img src="student.jpeg" alt="لیست دانش‌آموزان" data-aos="fade-right" />
     </section>
@@ -391,7 +379,7 @@
     <blockquote>«العلم نور یقذفه الله فی قلب من یشاء» – علامه حلی</blockquote>
   </footer>
 
-  <!-- Sparkle chat button -->
+  <!-- Sparkle chat button (moved right and up) -->
   <div class="chat-launch" id="chat-launch" title="باز کردن دستیار حلی" onclick="toggleChatbox()" data-aos="zoom-in">
     <span class="sparkle-icon">✦</span>
   </div>
@@ -406,13 +394,11 @@
     </div>
   </div>
 
-  <!-- AOS script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
   <script>
     AOS.init({ duration: 750, easing: 'ease-out', once: true });
 
-    /* Chatbot logic: local, no-signup. Expand responses as needed. */
     const cannedResponses = {
       "سلام": "سلام! خوش اومدید. چطور می‌تونم کمک‌تون کنم؟",
       "امکانات": "سامانه شامل مدیریت نمرات، لیست دانش‌آموزان، گزارش‌گیری، و تنظیمات مدرسه است.",
@@ -433,9 +419,7 @@
 
     function generateReply(text){
       const key = text.trim();
-      // exact match first
       if(cannedResponses[key]) return cannedResponses[key];
-      // fuzzy keyword checks
       const lower = key.toLowerCase();
       if(lower.includes('سلام') || lower.includes('hi')) return cannedResponses["سلام"];
       if(lower.includes('امکانات') || lower.includes('feature')) return cannedResponses["امکانات"];
@@ -443,7 +427,6 @@
       if(lower.includes('تماس') || lower.includes('ایمیل')) return cannedResponses["تماس"];
       if(lower.includes('کارنامه')) return cannedResponses["کارنامه"];
       if(lower.includes('دمو') || lower.includes('demo')) return cannedResponses["دمو"];
-      // fallback
       return "متأسفم، جواب دقیق این سوال رو فعلاً ندارم. می‌تونید سوال رو با جزئیات بپرسید یا ایمیل بزنید.";
     }
 
@@ -468,10 +451,8 @@
 
     function toggleChatbox(){
       const box = document.getElementById('chatbox');
-      const launch = document.getElementById('chat-launch');
       if(box.style.display === 'none' || box.style.display === ''){
         box.style.display = 'flex';
-        // first greeting if empty
         const log = document.getElementById('chat-log');
         if(log.children.length === 0){
           setTimeout(()=> addMessage("سلام! من دستیار سامانه حلی هستم. برای شروع می‌توانید بنویسید: امکانات یا مدارس یا تماس.", 'bot-msg'), 220);
@@ -481,7 +462,6 @@
       }
     }
 
-    // close chat if user clicks outside (mobile friendly)
     document.addEventListener('click', function(e){
       const box = document.getElementById('chatbox');
       const launch = document.getElementById('chat-launch');
